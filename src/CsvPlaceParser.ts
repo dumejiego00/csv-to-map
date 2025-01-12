@@ -1,5 +1,5 @@
 import IWritable from "./IWritable";
-import { readFile } from "node:fs/promises";
+// import { readFile } from "node:fs/promises";
 import * as dotenv from "dotenv";
 import Geocoder from "./Geocoder"; // Import the Geocoder class
 import Place from "./Place";
@@ -17,7 +17,12 @@ export default class CsvPlaceParser {
   }
 
   static async buildList(fileName: string): Promise<CsvPlaceParser> {
-    const data = await readFile(fileName, "utf8");
+    // const data = await readFile(fileName, "utf8");
+    const response = await fetch(fileName);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch CSV file: ${fileName}`);
+    }
+    const data = await response.text(); // Get the CSV content as text
     const parser = new CsvPlaceParser(data);
     await parser.parseFile(data);
     return parser;
