@@ -1,14 +1,16 @@
 import IWritable from "./IWritable";
 import { writeFile } from "node:fs/promises";
 import dotenv from "dotenv";
-
+import Place from "./types/Place";
 dotenv.config();
 
 export default class HtmlWriter implements IWritable {
   constructor() {}
 
-  async write(): Promise<void> {
+  async write(places: Place[]): Promise<void> {
     const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+
+    const placesJson = JSON.stringify(places);
 
     const html = `<!DOCTYPE html>
 <html>
@@ -17,6 +19,10 @@ export default class HtmlWriter implements IWritable {
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script>
+      // Inject the places data for frontend use
+      const placesData = ${placesJson};
+    </script>
     <script type="module" src="./src/MapHandler.ts"></script>
   </head>
   <body>

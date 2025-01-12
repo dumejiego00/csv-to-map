@@ -7,9 +7,10 @@ export async function initMap(): Promise<void> {
   const { Map } = await google.maps.importLibrary("maps");
 
   // Load and parse CSV data
-  const csvParser = await CsvPlaceParser.buildList("places.csv"); // Replace with your actual CSV filename
+  // const csvParser = await CsvPlaceParser.buildList("places.csv"); // Replace with your actual CSV filename
 
-  const places = csvParser.getItems();
+  // const places = csvParser.getItems();
+  const places = window.placesData;
 
   // Initialize map centered on the first place
   const firstPlace = places[0];
