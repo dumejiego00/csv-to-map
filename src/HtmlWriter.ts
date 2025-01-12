@@ -17,7 +17,7 @@ export default class HtmlWriter implements IWritable {
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script type="module" src="./dist/main.js"></script>
+    <script type="module" src="./src/MapHandler.ts"></script>
   </head>
   <body>
     <div id="map"></div>
