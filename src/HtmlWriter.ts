@@ -21,7 +21,7 @@ export default class HtmlWriter implements IWritable {
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script>
       // Inject the places data for frontend use
-      const placesData = ${placesJson};
+      window.placesData = ${placesJson};
     </script>
     <script type="module" src="./src/MapHandler.ts"></script>
   </head>

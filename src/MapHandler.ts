@@ -11,7 +11,6 @@ export async function initMap(): Promise<void> {
 
   // const places = csvParser.getItems();
   const places = window.placesData;
-  console.log("places",places)
   // Initialize map centered on the first place
   const firstPlace = places[0];
   map = new Map(document.getElementById("map") as HTMLElement, {
