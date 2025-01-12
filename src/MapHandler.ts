@@ -39,3 +39,7 @@ export async function initMap(): Promise<void> {
     });
   }
 }
+
+initMap().catch((error) => {
+  console.error("An error occurred while initializing the map:", error);
+});
