@@ -3,7 +3,7 @@ import Geocoder from "./Geocoder";
 import Place from "./types/Place";
 
 export default class CsvPlaceParser {
-  private _items: Place[] = [];
+  private items: Place[] = [];
   private geocoder: Geocoder;
 
   private constructor(data: string) {
@@ -27,7 +27,7 @@ export default class CsvPlaceParser {
 
       const { lat, lng } = await this.geocoder.geocodeAddress(address);
 
-      this._items.push({
+      this.items.push({
         name: itemInfo[0],
         address: address,
         description: itemInfo[2],
@@ -39,10 +39,10 @@ export default class CsvPlaceParser {
   }
 
   getItems(): Place[] {
-    return this._items;
+    return this.items;
   }
 
   public print(): void {
-    console.log(this._items);
+    console.log(this.items);
   }
 }
