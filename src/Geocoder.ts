@@ -19,7 +19,6 @@ export default class Geocoder {
 
           if (result && result.geometry) {
               const location = result.geometry;
-              console.log(`Geocoded ${address}: Latitude=${location.lat}, Longitude=${location.lng}`);
               return { lat: location.lat, lng: location.lng };
           } else {
               console.error(`No geocoding results for address: ${address}`);

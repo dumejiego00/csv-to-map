@@ -10,10 +10,9 @@ export async function initMap(): Promise<void> {
     return;
   }
 
-   // Center the map near Tunisia, which is at coordinates (33.8869, 9.5375)
    map = new Map(document.getElementById("map") as HTMLElement, {
-    center: { lat: 13.5127, lng: 2.1128 }, // Coordinates near Niamey, Niger
-    zoom: 2.0, // Adjust zoom level to include surrounding areas
+    center: { lat: 13.5127, lng: 2.1128 },
+    zoom: 2,
   });
 
   for (const place of places) {
