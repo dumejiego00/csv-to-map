@@ -1,4 +1,5 @@
 let map: google.maps.Map;
+let currentInfoWindow: google.maps.InfoWindow | null = null;
 
 export async function initMap(): Promise<void> {
   const { Map } = (await google.maps.importLibrary("maps")) as google.maps.MapsLibrary;
@@ -9,30 +10,34 @@ export async function initMap(): Promise<void> {
     return;
   }
 
-  const firstPlace = places[0];
-  map = new Map(document.getElementById("map") as HTMLElement, {
-    center: { lat: firstPlace.latitude, lng: firstPlace.longitude },
-    zoom: 5,
+   // Center the map near Tunisia, which is at coordinates (33.8869, 9.5375)
+   map = new Map(document.getElementById("map") as HTMLElement, {
+    center: { lat: 13.5127, lng: 2.1128 }, // Coordinates near Niamey, Niger
+    zoom: 2.0, // Adjust zoom level to include surrounding areas
   });
 
-  // Add markers for each place
   for (const place of places) {
+    const position = { lat: place.latitude, lng: place.longitude };
     const marker = new google.maps.Marker({
-      position: { lat: place.latitude, lng: place.longitude },
+      position,
       map,
       title: place.name,
       icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
     });
 
     const infoWindow = new google.maps.InfoWindow({
-      content: `<strong>${place.name}</strong><br>${place.address}<br>${place.description}`,
+      content: `<strong>${place.name}</strong><br>${place.address}`,
     });
 
     marker.addListener("click", () => {
+      if (currentInfoWindow) {
+        currentInfoWindow.close();
+      }
       infoWindow.open({
         anchor: marker,
         map,
       });
+      currentInfoWindow = infoWindow;
     });
   }
 }
