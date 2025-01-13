@@ -90,7 +90,7 @@ This will:
 npm run build
 ```
 
-### Development (CSV Parsing Only)
+### Development (Parses CSV and creates places.txt and places.html)
 
 ```bash
 npm run dev
