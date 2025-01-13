@@ -1,6 +1,21 @@
 # Map CSV Project
+This is a project that visualizes places from a CSV file on a Google Map and generates a text file categorizing these places.
 
-A project that visualizes places from a CSV file on a Google Map and generates a text file categorizing these places.
+⚠️ **Warning: API Key Security** ⚠️
+
+🚨 **Do NOT deploy this project with your API keys as-is!** 🚨
+
+Parcel builds the frontend in a way that **exposes your API keys** publicly. This project was created for learning purposes to demonstrate:
+
+- 🏗️ **Polymorphism** in TypeScript  
+- 🌐 **Frontend building** with Parcel  
+- 📂 **CSV file processing**  
+- 🗺️ **Google Maps integration**  
+- 📍 **Geolocation APIs usage**  
+
+🔒 **Recommendation:**  
+- Use this project in **local development mode** only.  
+- Explore secure methods to hide your API keys (e.g., using backend proxies, serverless functions, or environment variables with server-side handling).  
 
 ## Features
 
@@ -14,15 +29,16 @@ A project that visualizes places from a CSV file on a Google Map and generates a
 - [Node.js](https://nodejs.org/) installed.
 - API Keys for:
   - **Google Maps JavaScript API** (for map display).
-  - **OpenCage Geocoding API** (for address geocoding).
+    ***You have to enable billing to use complete API features***
+  - **OpenCage Geocoding API** (for address geocoding. Free tier available).
 
 ## Installation
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/map_csv.git
-   cd map_csv
+   git clone git@github.com:yourusername/csv-to-map.git
+   cd csv-to-map
    ```
 
 2. **Install dependencies:**
@@ -59,6 +75,16 @@ This will:
 - Launch a server displaying the map on `places.html`.
 
 ### Build for Production
+⚠️ **Warning: API Keys Will Be Exposed!** ⚠️
+
+🚨 Running `npm run build` will expose your API keys in the frontend.
+
+🔒 **To stay safe:**  
+- **Do not deploy** without securing your API keys.  
+- Use this project for **local development only**.  
+- Find safer ways to hide API keys if deploying.
+
+🔧 **If you understand the risks and still want to build for production, use:** 
 
 ```bash
 npm run build
@@ -74,6 +100,8 @@ npm run dev
 
 ```
 map_csv/
+├── image/
+│   └── map_image.png
 ├── src/
 │   ├── services/
 │   │   ├── CsvPlaceParser.ts   # Parses the CSV file
@@ -81,16 +109,18 @@ map_csv/
 │   │   ├── TextWriter.ts       # Generates places.txt
 │   │   └── Geocoder.ts         # Geocodes addresses using OpenCage API
 │   ├── types/
-│   │   └── Place.ts            # Interface for place data
+│   │   ├── Place.ts            # Interface for place data
+│   │   ├── global.d.ts 
+│   │   └── IWritable.ts        # Interface for Writer classes
 │   └── main.ts                 # Main program logic
 ├── places.csv                  # Input CSV with place data
-├── places.html                 # Map visualization
-├── places.txt                  # Categorized text output
+├── places.html                 # Map visualization (to be generated)
+├── places.txt                  # Categorized text output (to be generated)
 ├── .env                        # API keys
+├── style.css
 ├── package.json
 ├── package-lock.json
 ├── tsconfig.json
-├── style.css
 ├── .gitignore
 └── README.md
 ```
@@ -133,6 +163,10 @@ Christ the Redeemer,Parque Nacional da Tijuca Rio de Janeiro Brazil,Iconic statu
   Description: Ancient Inca city located in the Andes
 ```
 
+## Output (`google map`)
+
+![Google map output example](image/map_image.png "Example Image")
+
 ## Dependencies
 
 - [TypeScript](https://www.typescriptlang.org/)
@@ -140,7 +174,5 @@ Christ the Redeemer,Parque Nacional da Tijuca Rio de Janeiro Brazil,Iconic statu
 - [Axios](https://axios-http.com/)
 - [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript)
 - [OpenCage Geocoding API](https://opencagedata.com/)
-
-## License
-
-This project is licensed under the MIT License.
+- [dotenv](https://www.npmjs.com/package/dotenv)
+- [ts-node](https://www.npmjs.com/package/ts-node)
