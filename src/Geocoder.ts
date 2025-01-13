@@ -4,6 +4,9 @@ export default class Geocoder {
   private apiKey: string;
 
   constructor() {
+    if (!process.env.OPENCAGE_API_KEY) {
+        throw new Error("OPENCAGE_API_KEY is not defined in the environment variables.");
+      }
     this.apiKey = process.env.OPENCAGE_API_KEY!;
   }
 
