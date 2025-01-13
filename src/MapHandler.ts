@@ -25,7 +25,7 @@ export async function initMap(): Promise<void> {
     });
 
     const infoWindow = new google.maps.InfoWindow({
-      content: `<strong>${place.name}</strong><br>${place.address}`,
+      content: `<strong>${place.name}</strong><br>${place.description}<br>${place.address}`,
     });
 
     marker.addListener("click", () => {
