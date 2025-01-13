@@ -1,5 +1,7 @@
 import HtmlWriter from "./HtmlWriter";
 import CsvPlaceParser from "./CsvPlaceParser";
+import dotenv from "dotenv";
+dotenv.config();
 
 async function main() {
   const csvParser = await CsvPlaceParser.buildList("places.csv");

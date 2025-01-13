@@ -1,10 +1,6 @@
-import IWritable from "./IWritable";
 import { writeFile } from "node:fs/promises";
-import dotenv from "dotenv";
 import Place from "./types/Place";
-dotenv.config();
-
-export default class HtmlWriter implements IWritable {
+export default class HtmlWriter{
   constructor() {}
 
   async write(places: Place[]): Promise<void> {

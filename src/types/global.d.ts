@@ -1,6 +1,4 @@
-// global.d.ts
-
-import Place from "./src/Place";  // Adjust the path if needed
+import Place from "./src/Place";
 
 declare global {
   interface Window {

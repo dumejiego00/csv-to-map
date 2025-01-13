@@ -1,10 +1,13 @@
-import CsvPlaceParser from "./CsvPlaceParser";
-
 let map: google.maps.Map;
 
 export async function initMap(): Promise<void> {
-  const { Map } = await (google.maps as any).importLibrary("maps");
+  const { Map } = (await google.maps.importLibrary("maps")) as google.maps.MapsLibrary;
+
   const places = window.placesData;
+  if (!places || places.length === 0) {
+    console.error("No places data available.");
+    return;
+  }
 
   const firstPlace = places[0];
   map = new Map(document.getElementById("map") as HTMLElement, {

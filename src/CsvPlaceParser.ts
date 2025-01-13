@@ -1,43 +1,30 @@
-import IWritable from "./IWritable";
 import { readFile } from "node:fs/promises";
-import * as dotenv from "dotenv";
-import Geocoder from "./Geocoder"; // Import the Geocoder class
+import Geocoder from "./Geocoder";
 import Place from "./types/Place";
-
-dotenv.config();
-
 export default class CsvPlaceParser {
-  private _csvData: string;
   private _items: Place[] = [];
   private geocoder: Geocoder;
 
   private constructor(data: string) {
-    this._csvData = data;
-    this.geocoder = new Geocoder(); // Initialize Geocoder instance
+    this.geocoder = new Geocoder();
   }
 
   static async buildList(fileName: string): Promise<CsvPlaceParser> {
     const data = await readFile(fileName, "utf8");
-    // const response = await fetch(fileName);
-    // if (!response.ok) {
-    //   throw new Error(`Failed to fetch CSV file: ${fileName}`);
-    // }
-    // const data = await response.text(); // Get the CSV content as text
     const parser = new CsvPlaceParser(data);
     await parser.parseFile(data);
     return parser;
   }
 
   private async parseFile(fileContent: string) {
-    const lines = fileContent.split("\n").slice(1); // Skip header
+    const lines = fileContent.split("\n").slice(1); 
 
     for (const line of lines) {
       const itemInfo = line.split(",");
       const address = itemInfo[1];
       console.log(address)
 
-      // Use Geocoder class for geocoding
-      const { lat, lng} = await this.geocoder.geocodeAddress(address);
+      const { lat, lng } = await this.geocoder.geocodeAddress(address);
 
       this._items.push({
         name: itemInfo[0],
@@ -56,9 +43,5 @@ export default class CsvPlaceParser {
 
   public print(): void {
     console.log(this._items);
-  }
-
-  public async writeList(writer: IWritable) {
-    writer.write(this._items);
   }
 }
