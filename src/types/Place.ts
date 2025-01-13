@@ -4,4 +4,5 @@ export default interface Place {
     description: string;
     latitude: number;
     longitude: number;
+    category:string;
 }

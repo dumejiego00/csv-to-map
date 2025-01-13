@@ -32,6 +32,7 @@ export default class CsvPlaceParser {
         latitude: lat,
         longitude: lng,
         description: itemInfo[2],
+        category:itemInfo[3]
       });
     }
   }

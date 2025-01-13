@@ -1,5 +1,7 @@
 .env
-node_modules
-places.html
 .parcel-cache
+node_modules
 dist
+
+places.html
+places.txt

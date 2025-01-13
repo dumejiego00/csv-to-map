@@ -38,8 +38,11 @@ export default class HtmlWriter implements IWritable{
         </body>
       </html>`;
 
-    await writeFile("places.html", html);
+    try {
+      await writeFile("places.html", html);
+      console.log("File 'places.html' has been created successfully.");
+    } catch (error) {
+      console.error("Error writing to file:", error);
+    }
   }
 }
-
-
