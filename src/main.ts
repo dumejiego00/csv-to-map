@@ -1,5 +1,5 @@
-import HtmlWriter from "./HtmlWriter";
-import CsvPlaceParser from "./CsvPlaceParser";
+import HtmlWriter from "./services/HtmlWriter";
+import CsvPlaceParser from "./services/CsvPlaceParser";
 import dotenv from "dotenv";
 dotenv.config();
 

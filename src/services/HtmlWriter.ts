@@ -1,7 +1,8 @@
 import { writeFile } from "node:fs/promises";
-import Place from "./types/Place";
+import Place from "../types/Place";
+import IWritable from "../types/IWritable";
 
-export default class HtmlWriter{
+export default class HtmlWriter implements IWritable{
   private apiKey: string;
 
   constructor() {
@@ -12,7 +13,6 @@ export default class HtmlWriter{
   }
   
   async write(places: Place[]): Promise<void> {
-    const apiKey = process.env.GOOGLE_MAPS_API_KEY;
 
     const placesJson = JSON.stringify(places);
 
@@ -27,7 +27,7 @@ export default class HtmlWriter{
             // Inject the places data for frontend use
             window.placesData = ${placesJson};
           </script>
-          <script type="module" src="./src/mapHandler.ts"></script>
+          <script type="module" src="./src/services/mapHandler.ts"></script>
         </head>
         <body>
           <div id="map"></div>

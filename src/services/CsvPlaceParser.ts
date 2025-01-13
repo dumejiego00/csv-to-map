@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import Geocoder from "./Geocoder";
-import Place from "./types/Place";
+import Place from "../types/Place";
 
 export default class CsvPlaceParser {
   private items: Place[] = [];
