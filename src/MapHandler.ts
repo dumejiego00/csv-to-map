@@ -3,15 +3,9 @@ import CsvPlaceParser from "./CsvPlaceParser";
 let map: google.maps.Map;
 
 export async function initMap(): Promise<void> {
-  //@ts-ignore
-  const { Map } = await google.maps.importLibrary("maps");
-
-  // Load and parse CSV data
-  // const csvParser = await CsvPlaceParser.buildList("places.csv"); // Replace with your actual CSV filename
-
-  // const places = csvParser.getItems();
+  const { Map } = await (google.maps as any).importLibrary("maps");
   const places = window.placesData;
-  // Initialize map centered on the first place
+
   const firstPlace = places[0];
   map = new Map(document.getElementById("map") as HTMLElement, {
     center: { lat: firstPlace.latitude, lng: firstPlace.longitude },
